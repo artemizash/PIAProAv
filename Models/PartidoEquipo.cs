@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TemplateCSharp.Models;
 
-namespace TemplateCSharp.Models
+public class PartidoEquipo
 {
-    internal class PartidoEquipo
-    {
-    }
+    public int IdPartidoEquipo { get; set; }
+    public int IdPartido { get; set; }
+    public int IdEquipoLocal { get; set; }
+    public int IdEquipoVisitante { get; set; }
 }
