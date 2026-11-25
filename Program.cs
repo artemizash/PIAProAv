@@ -27,6 +27,8 @@ services.AddTransient<IClienteRepository, ClienteRepository>();
 services.AddTransient<IUsuarioService, UsuarioService>();
 services.AddTransient<IClienteService, ClienteService>();
 services.AddTransient<IAccesoService, AccesoService>();
+services.AddTransient<IEstadioRepository, EstadioRepository>();
+services.AddTransient<IEstadioService, EstadioService>();
 
 services.AddTransient<FrmUsuarios>();
 services.AddTransient<FrmClientes>();
