@@ -7,49 +7,66 @@ using TemplateCSharp.Interfaces.Repositories;
 using TemplateCSharp.Interfaces.Services;
 using TemplateCSharp.Services;
 
-ApplicationConfiguration.Initialize();
+namespace TemplateCSharp;
 
-IConfiguration configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile(
-        "appsettings.json",
-        optional: false,
-        reloadOnChange: false)
-    .Build();
+internal static class Program
+{
+    [STAThread]
+    static void Main()
+    {
+        ApplicationConfiguration.Initialize();
 
-ServiceCollection services = new();
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile(
+                "appsettings.json",
+                optional: false,
+                reloadOnChange: false)
+            .Build();
 
-services.AddSingleton(configuration);
+        ServiceCollection services = new();
 
-services.AddTransient<DatabaseConnection>();
-services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-services.AddTransient<IClienteRepository, ClienteRepository>();
-services.AddTransient<IUsuarioService, UsuarioService>();
-services.AddTransient<IClienteService, ClienteService>();
-services.AddTransient<IAccesoService, AccesoService>();
-services.AddTransient<IEstadioRepository, EstadioRepository>();
-services.AddTransient<IEstadioService, EstadioService>();
+        services.AddSingleton(configuration);
 
-services.AddTransient<FrmUsuarios>();
-services.AddTransient<FrmClientes>();
-services.AddTransient<FrmAcceso>();
-services.AddTransient<FrmEstadios>();
-services.AddTransient<FrmZonas>();
-services.AddTransient<FrmAsientos>();
-services.AddTransient<FrmEquipos>();
-services.AddTransient<FrmPartidos>();
-services.AddTransient<FrmVentas>();
-services.AddTransient<FrmCancelaciones>();
-services.AddTransient<FrmFacturas>();
-services.AddTransient<FrmReporteVentas>();
-services.AddTransient<FrmReporteOcupacion>();
-services.AddTransient<FrmHistorialClientes>();
-services.AddTransient<FrmPrincipal>();
+        //repositorios
+        services.AddTransient<DatabaseConnection>();
 
-using ServiceProvider serviceProvider =
-    services.BuildServiceProvider();
+        services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+        services.AddTransient<IClienteRepository, ClienteRepository>();
+        services.AddTransient<IEstadioRepository, EstadioRepository>();
 
-FrmPrincipal form =
-    serviceProvider.GetRequiredService<FrmPrincipal>();
+        //servicios
+        services.AddTransient<IUsuarioService, UsuarioService>();
+        services.AddTransient<IClienteService, ClienteService>();
+        services.AddTransient<IAccesoService, AccesoService>();
+        services.AddTransient<IEstadioService, EstadioService>();
 
-Application.Run(form);
+        //formularios
+        services.AddTransient<FrmUsuarios>();
+        services.AddTransient<FrmClientes>();
+        services.AddTransient<FrmAcceso>();
+        services.AddTransient<FrmEstadios>();
+        services.AddTransient<FrmZonas>();
+        services.AddTransient<FrmAsientos>();
+        services.AddTransient<FrmEquipos>();
+        services.AddTransient<FrmPartidos>();
+        services.AddTransient<FrmVentas>();
+        services.AddTransient<FrmCancelaciones>();
+        services.AddTransient<FrmFacturas>();
+        services.AddTransient<FrmReporteVentas>();
+        services.AddTransient<FrmReporteOcupacion>();
+        services.AddTransient<FrmHistorialClientes>();
+        services.AddTransient<FrmPrincipal>();
+
+        using ServiceProvider serviceProvider =
+            services.BuildServiceProvider();
+
+        FrmPrincipal form =
+            serviceProvider.GetRequiredService<FrmPrincipal>();
+
+        Application.Run(form);
+
+    }
+
+}
+

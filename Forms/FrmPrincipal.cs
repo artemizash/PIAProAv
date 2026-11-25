@@ -156,6 +156,10 @@ public partial class FrmPrincipal : Form
         }
 
         using T form = _serviceProvider.GetRequiredService<T>();
+        if (form is FrmEstadios estadios && _usuarioActual != null)
+        {
+            estadios.EstablecerUsuario(_usuarioActual.IdUsuario);
+        }
         form.ShowDialog(this);
     }
 }
