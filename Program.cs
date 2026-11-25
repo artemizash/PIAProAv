@@ -35,13 +35,17 @@ internal static class Program
         services.AddTransient<IClienteRepository, ClienteRepository>();
         services.AddTransient<IEstadioRepository, EstadioRepository>();
         services.AddTransient<IZonaRepository, ZonaRepository>();
+        services.AddTransient<IAsientoRepository, AsientoRepository>();
+        services.AddTransient<IEquipoRepository, EquipoRepository>();
 
         //servicios
         services.AddTransient<IUsuarioService, UsuarioService>();
         services.AddTransient<IClienteService, ClienteService>();
         services.AddTransient<IAccesoService, AccesoService>();
+        services.AddTransient<IEquipoService, EquipoService>();
         services.AddTransient<IEstadioService, EstadioService>();
         services.AddTransient<IZonaService, ZonaService>();
+        services.AddTransient<IAsientoService, AsientoService>();
 
         //formularios
         services.AddTransient<FrmUsuarios>();
