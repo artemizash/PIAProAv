@@ -8,7 +8,8 @@ namespace TemplateCSharp.Data.Repositories;
 public class UsuarioRepository : IUsuarioRepository
 {
     private readonly DatabaseConnection _database;
-    public UsuarioRepository(DatabaseConnection database) => _database = database;
+    private readonly SesionActual _sesion;
+    public UsuarioRepository(DatabaseConnection database, SesionActual sesion) { _database = database; _sesion = sesion; }
 
     private SqlCommand CreateCommand(SqlConnection connection, string name)
         => new(name, connection) { CommandType = CommandType.StoredProcedure };
@@ -68,6 +69,12 @@ public class UsuarioRepository : IUsuarioRepository
         AddUserParams(cmd, usuario);
         cmd.Parameters.Add("@contrasena", SqlDbType.VarChar, 255).Value = hashContrasena;
         conn.Open();
+        if (_sesion.IdUsuario > 0)
+        {
+            using SqlCommand auditoria = CreateCommand(conn, "dbo.usp_Auditoria_EstablecerUsuario");
+            auditoria.Parameters.Add("@id_usuario", SqlDbType.Int).Value = _sesion.IdUsuario;
+            auditoria.ExecuteNonQuery();
+        }
         cmd.ExecuteNonQuery();
     }
 

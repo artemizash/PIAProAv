@@ -10,17 +10,17 @@ public partial class FrmPrincipal : Form
     private IServiceProvider _serviceProvider = null!;
     private int _rolActual;
     private int _idRolAdministrador;
-    
+
     private UsuarioCredenciales? _usuarioActual;
 
-    
+
     public FrmPrincipal()
     {
         InitializeComponent();
         EnlazarBotones();
     }
 
-    
+
     public FrmPrincipal(IServiceProvider serviceProvider) : this()
     {
         _serviceProvider = serviceProvider;
@@ -29,7 +29,7 @@ public partial class FrmPrincipal : Form
 
     private void EnlazarBotones()
     {
-        
+
         btnUsuarios.Click += (_, _) => Abrir<FrmUsuarios>();
         btnClientes.Click += (_, _) => Abrir<FrmClientes>();
         btnCambiarUsuario.Click += (_, _) => CambiarUsuario();
@@ -52,7 +52,7 @@ public partial class FrmPrincipal : Form
         menuSalir.Click += (_, _) => Close();
     }
 
-    
+
     private void PrimerAcceso()
     {
         try
@@ -87,9 +87,14 @@ public partial class FrmPrincipal : Form
 
     private void CambiarUsuario()
     {
-       
+
         _rolActual = 0;
         _usuarioActual = null;
+        var sesion = _serviceProvider
+    .GetRequiredService<SesionActual>();
+
+        sesion.IdUsuario = 0;
+        sesion.Nombre = "";
         Text = "Sistema de boletos - Sin sesión";
 
         using FrmAcceso acceso = _serviceProvider.GetRequiredService<FrmAcceso>();
@@ -101,7 +106,7 @@ public partial class FrmPrincipal : Form
 
         UsuarioCredenciales nuevoUsuario = acceso.UsuarioAutenticado;
 
-       
+
         if (nuevoUsuario.DebeCambiarContrasena)
         {
             IUsuarioService servicio = _serviceProvider.GetRequiredService<IUsuarioService>();
@@ -116,8 +121,10 @@ public partial class FrmPrincipal : Form
             nuevoUsuario.DebeCambiarContrasena = false;
         }
 
-        
+
         _usuarioActual = nuevoUsuario;
+        sesion.IdUsuario = nuevoUsuario.IdUsuario;
+        sesion.Nombre = nuevoUsuario.NombreCompleto;
         _rolActual = nuevoUsuario.IdRol;
         Text = "Sistema de boletos - " + nuevoUsuario.NombreCompleto;
     }
@@ -141,25 +148,39 @@ public partial class FrmPrincipal : Form
         // Ninguna funcionalidad puede abrirse sin iniciar sesión.
         if (_rolActual == 0)
         {
-            MessageBox.Show("Debes iniciar sesión para acceder al sistema.");
+            MessageBox.Show(
+                "Debes iniciar sesión para acceder al sistema.");
+
             return;
         }
 
-        // Solo Administrador puede acceder a los módulos administrativos.
+        // Solo Administrador puede acceder
+        // a los módulos administrativos.
         // Operativo puede usar Clientes y Ventas.
         if (_rolActual != _idRolAdministrador &&
             typeof(T) != typeof(FrmClientes) &&
             typeof(T) != typeof(FrmVentas))
         {
-            MessageBox.Show("Esta sección está reservada para administradores.");
+            MessageBox.Show(
+                "Esta sección está reservada para administradores.");
+
             return;
         }
 
         using T form = _serviceProvider.GetRequiredService<T>();
+
+        // Enviar usuario al formulario de Estadios.
         if (form is FrmEstadios estadios && _usuarioActual != null)
         {
             estadios.EstablecerUsuario(_usuarioActual.IdUsuario);
         }
+
+        // Enviar usuario al formulario de Partidos.
+        if (form is FrmPartidos partidos && _usuarioActual != null)
+        {
+            partidos.EstablecerUsuario(_usuarioActual.IdUsuario);
+        }
+
         form.ShowDialog(this);
     }
 }

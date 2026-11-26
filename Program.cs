@@ -6,6 +6,7 @@ using TemplateCSharp.Forms;
 using TemplateCSharp.Interfaces.Repositories;
 using TemplateCSharp.Interfaces.Services;
 using TemplateCSharp.Services;
+using TemplateCSharp.Models;
 
 namespace TemplateCSharp;
 
@@ -27,8 +28,9 @@ internal static class Program
         ServiceCollection services = new();
 
         services.AddSingleton(configuration);
+        services.AddSingleton<SesionActual>();
 
-        //repositorios
+        // Repositorios.
         services.AddTransient<DatabaseConnection>();
 
         services.AddTransient<IUsuarioRepository, UsuarioRepository>();
@@ -37,8 +39,10 @@ internal static class Program
         services.AddTransient<IZonaRepository, ZonaRepository>();
         services.AddTransient<IAsientoRepository, AsientoRepository>();
         services.AddTransient<IEquipoRepository, EquipoRepository>();
+        services.AddTransient<IPartidoRepository, PartidoRepository>();
+        services.AddTransient<IVentaRepository, VentaRepository>();
 
-        //servicios
+        // Servicios.
         services.AddTransient<IUsuarioService, UsuarioService>();
         services.AddTransient<IClienteService, ClienteService>();
         services.AddTransient<IAccesoService, AccesoService>();
@@ -46,8 +50,10 @@ internal static class Program
         services.AddTransient<IEstadioService, EstadioService>();
         services.AddTransient<IZonaService, ZonaService>();
         services.AddTransient<IAsientoService, AsientoService>();
+        services.AddTransient<IPartidoService, PartidoService>();
+        services.AddTransient<IVentaService, VentaService>();
 
-        //formularios
+        // Formularios.
         services.AddTransient<FrmUsuarios>();
         services.AddTransient<FrmClientes>();
         services.AddTransient<FrmAcceso>();
@@ -71,8 +77,5 @@ internal static class Program
             serviceProvider.GetRequiredService<FrmPrincipal>();
 
         Application.Run(form);
-
     }
-
 }
-

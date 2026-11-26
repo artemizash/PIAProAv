@@ -20,7 +20,6 @@ partial class FrmPartidos
     private Label lblCampo5 = null!;
     private ComboBox campo5 = null!;
     private Button btnGuardar = null!;
-    private Button btnConsultar = null!;
     private Button btnRegresar = null!;
     private DataGridView dgvDatos = null!;
     private DataGridViewTextBoxColumn colCampo1 = null!;
@@ -50,7 +49,6 @@ partial class FrmPartidos
         lblCampo5 = new Label();
         campo5 = new ComboBox();
         btnGuardar = new Button();
-        btnConsultar = new Button();
         btnRegresar = new Button();
         dgvDatos = new DataGridView();
         colCampo1 = new DataGridViewTextBoxColumn();
@@ -65,30 +63,27 @@ partial class FrmPartidos
         // 
         lblTitulo.Font = new Font("Segoe UI", 21F, FontStyle.Bold);
         lblTitulo.ForeColor = Color.DimGray;
-        lblTitulo.Location = new Point(32, 29);
-        lblTitulo.Margin = new Padding(4, 0, 4, 0);
+        lblTitulo.Location = new Point(26, 23);
         lblTitulo.Name = "lblTitulo";
-        lblTitulo.Size = new Size(1138, 59);
+        lblTitulo.Size = new Size(910, 47);
         lblTitulo.TabIndex = 0;
         lblTitulo.Text = "PARTIDOS";
         // 
         // lblDescripcion
         // 
         lblDescripcion.ForeColor = Color.Gray;
-        lblDescripcion.Location = new Point(35, 100);
-        lblDescripcion.Margin = new Padding(4, 0, 4, 0);
+        lblDescripcion.Location = new Point(28, 80);
         lblDescripcion.Name = "lblDescripcion";
-        lblDescripcion.Size = new Size(1106, 38);
+        lblDescripcion.Size = new Size(885, 30);
         lblDescripcion.TabIndex = 0;
         lblDescripcion.Text = "Programar partidos y seleccionar equipos.";
         // 
         // lblCampo1
         // 
         lblCampo1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblCampo1.Location = new Point(35, 216);
-        lblCampo1.Margin = new Padding(4, 0, 4, 0);
+        lblCampo1.Location = new Point(28, 173);
         lblCampo1.Name = "lblCampo1";
-        lblCampo1.Size = new Size(181, 31);
+        lblCampo1.Size = new Size(145, 25);
         lblCampo1.TabIndex = 0;
         lblCampo1.Text = "Estadio:";
         lblCampo1.TextAlign = ContentAlignment.TopRight;
@@ -97,19 +92,17 @@ partial class FrmPartidos
         // 
         campo1.DropDownStyle = ComboBoxStyle.DropDownList;
         campo1.Enabled = false;
-        campo1.Location = new Point(220, 211);
-        campo1.Margin = new Padding(4, 4, 4, 4);
+        campo1.Location = new Point(176, 169);
         campo1.Name = "campo1";
-        campo1.Size = new Size(355, 33);
+        campo1.Size = new Size(285, 28);
         campo1.TabIndex = 0;
         // 
         // lblCampo2
         // 
         lblCampo2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblCampo2.Location = new Point(615, 216);
-        lblCampo2.Margin = new Padding(4, 0, 4, 0);
+        lblCampo2.Location = new Point(492, 173);
         lblCampo2.Name = "lblCampo2";
-        lblCampo2.Size = new Size(181, 31);
+        lblCampo2.Size = new Size(145, 25);
         lblCampo2.TabIndex = 0;
         lblCampo2.Text = "Fecha y hora:";
         lblCampo2.TextAlign = ContentAlignment.TopRight;
@@ -119,19 +112,17 @@ partial class FrmPartidos
         campo2.CustomFormat = "dd-MMM-yyyy HH:mm";
         campo2.Enabled = false;
         campo2.Format = DateTimePickerFormat.Custom;
-        campo2.Location = new Point(804, 211);
-        campo2.Margin = new Padding(4, 4, 4, 4);
+        campo2.Location = new Point(643, 169);
         campo2.Name = "campo2";
-        campo2.Size = new Size(355, 31);
+        campo2.Size = new Size(285, 27);
         campo2.TabIndex = 0;
         // 
         // lblCampo3
         // 
         lblCampo3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblCampo3.Location = new Point(35, 285);
-        lblCampo3.Margin = new Padding(4, 0, 4, 0);
+        lblCampo3.Location = new Point(28, 228);
         lblCampo3.Name = "lblCampo3";
-        lblCampo3.Size = new Size(181, 31);
+        lblCampo3.Size = new Size(145, 25);
         lblCampo3.TabIndex = 0;
         lblCampo3.Text = "Equipo local:";
         lblCampo3.TextAlign = ContentAlignment.TopRight;
@@ -140,19 +131,17 @@ partial class FrmPartidos
         // 
         campo3.DropDownStyle = ComboBoxStyle.DropDownList;
         campo3.Enabled = false;
-        campo3.Location = new Point(220, 282);
-        campo3.Margin = new Padding(4, 4, 4, 4);
+        campo3.Location = new Point(176, 226);
         campo3.Name = "campo3";
-        campo3.Size = new Size(355, 33);
+        campo3.Size = new Size(285, 28);
         campo3.TabIndex = 0;
         // 
         // lblCampo4
         // 
         lblCampo4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblCampo4.Location = new Point(619, 285);
-        lblCampo4.Margin = new Padding(4, 0, 4, 0);
+        lblCampo4.Location = new Point(495, 228);
         lblCampo4.Name = "lblCampo4";
-        lblCampo4.Size = new Size(181, 31);
+        lblCampo4.Size = new Size(145, 25);
         lblCampo4.TabIndex = 0;
         lblCampo4.Text = "Equipo visitante:";
         lblCampo4.TextAlign = ContentAlignment.TopRight;
@@ -161,19 +150,17 @@ partial class FrmPartidos
         // 
         campo4.DropDownStyle = ComboBoxStyle.DropDownList;
         campo4.Enabled = false;
-        campo4.Location = new Point(804, 282);
-        campo4.Margin = new Padding(4, 4, 4, 4);
+        campo4.Location = new Point(643, 226);
         campo4.Name = "campo4";
-        campo4.Size = new Size(355, 33);
+        campo4.Size = new Size(285, 28);
         campo4.TabIndex = 0;
         // 
         // lblCampo5
         // 
         lblCampo5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblCampo5.Location = new Point(35, 357);
-        lblCampo5.Margin = new Padding(4, 0, 4, 0);
+        lblCampo5.Location = new Point(28, 286);
         lblCampo5.Name = "lblCampo5";
-        lblCampo5.Size = new Size(181, 31);
+        lblCampo5.Size = new Size(145, 25);
         lblCampo5.TabIndex = 0;
         lblCampo5.Text = "Estado:";
         lblCampo5.TextAlign = ContentAlignment.TopRight;
@@ -182,10 +169,9 @@ partial class FrmPartidos
         // 
         campo5.DropDownStyle = ComboBoxStyle.DropDownList;
         campo5.Enabled = false;
-        campo5.Location = new Point(220, 354);
-        campo5.Margin = new Padding(4, 4, 4, 4);
+        campo5.Location = new Point(176, 283);
         campo5.Name = "campo5";
-        campo5.Size = new Size(355, 33);
+        campo5.Size = new Size(285, 28);
         campo5.TabIndex = 0;
         // 
         // btnGuardar
@@ -195,28 +181,12 @@ partial class FrmPartidos
         btnGuardar.FlatStyle = FlatStyle.Flat;
         btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         btnGuardar.ForeColor = Color.Transparent;
-        btnGuardar.Location = new Point(35, 460);
-        btnGuardar.Margin = new Padding(4, 4, 4, 4);
+        btnGuardar.Location = new Point(28, 368);
         btnGuardar.Name = "btnGuardar";
-        btnGuardar.Size = new Size(294, 54);
+        btnGuardar.Size = new Size(235, 43);
         btnGuardar.TabIndex = 0;
         btnGuardar.Text = "Guardar ";
         btnGuardar.UseVisualStyleBackColor = false;
-        // 
-        // btnConsultar
-        // 
-        btnConsultar.BackColor = Color.HotPink;
-        btnConsultar.Enabled = false;
-        btnConsultar.FlatStyle = FlatStyle.Flat;
-        btnConsultar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        btnConsultar.ForeColor = Color.Transparent;
-        btnConsultar.Location = new Point(349, 460);
-        btnConsultar.Margin = new Padding(4, 4, 4, 4);
-        btnConsultar.Name = "btnConsultar";
-        btnConsultar.Size = new Size(294, 54);
-        btnConsultar.TabIndex = 0;
-        btnConsultar.Text = "Consultar ";
-        btnConsultar.UseVisualStyleBackColor = false;
         // 
         // btnRegresar
         // 
@@ -224,10 +194,9 @@ partial class FrmPartidos
         btnRegresar.FlatStyle = FlatStyle.Flat;
         btnRegresar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         btnRegresar.ForeColor = Color.Transparent;
-        btnRegresar.Location = new Point(991, 460);
-        btnRegresar.Margin = new Padding(4, 4, 4, 4);
+        btnRegresar.Location = new Point(793, 368);
         btnRegresar.Name = "btnRegresar";
-        btnRegresar.Size = new Size(175, 54);
+        btnRegresar.Size = new Size(140, 43);
         btnRegresar.TabIndex = 0;
         btnRegresar.Text = "Regresar";
         btnRegresar.UseVisualStyleBackColor = false;
@@ -242,14 +211,13 @@ partial class FrmPartidos
         dgvDatos.ColumnHeadersHeight = 34;
         dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colCampo1, colCampo2, colCampo3, colCampo4, colCampo5 });
         dgvDatos.Enabled = false;
-        dgvDatos.Location = new Point(35, 544);
-        dgvDatos.Margin = new Padding(4, 4, 4, 4);
+        dgvDatos.Location = new Point(28, 435);
         dgvDatos.MultiSelect = false;
         dgvDatos.Name = "dgvDatos";
         dgvDatos.ReadOnly = true;
         dgvDatos.RowHeadersWidth = 62;
         dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dgvDatos.Size = new Size(1131, 225);
+        dgvDatos.Size = new Size(905, 180);
         dgvDatos.TabIndex = 0;
         // 
         // colCampo1
@@ -289,10 +257,10 @@ partial class FrmPartidos
         // 
         // FrmPartidos
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.LavenderBlush;
-        ClientSize = new Size(1212, 819);
+        ClientSize = new Size(970, 655);
         Controls.Add(lblTitulo);
         Controls.Add(lblDescripcion);
         Controls.Add(lblCampo1);
@@ -306,11 +274,9 @@ partial class FrmPartidos
         Controls.Add(lblCampo5);
         Controls.Add(campo5);
         Controls.Add(btnGuardar);
-        Controls.Add(btnConsultar);
         Controls.Add(btnRegresar);
         Controls.Add(dgvDatos);
-        Margin = new Padding(4, 4, 4, 4);
-        MinimumSize = new Size(1227, 855);
+        MinimumSize = new Size(985, 693);
         Name = "FrmPartidos";
         StartPosition = FormStartPosition.CenterParent;
         Text = "Partidos ";

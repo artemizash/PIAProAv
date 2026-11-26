@@ -9,7 +9,14 @@ namespace TemplateCSharp.Data.Repositories;
 public class ClienteRepository : IClienteRepository
 {
     private readonly DatabaseConnection _database;
-    public ClienteRepository(DatabaseConnection database) => _database = database;
+    private readonly SesionActual _sesion;
+    public ClienteRepository(DatabaseConnection database, SesionActual sesion) { _database = database; _sesion = sesion; }
+    private void EstablecerAuditoria(SqlConnection conn)
+    {
+        using SqlCommand cmd = CreateCommand(conn, "dbo.usp_Auditoria_EstablecerUsuario");
+        cmd.Parameters.Add("@id_usuario", SqlDbType.Int).Value = _sesion.IdUsuario;
+        cmd.ExecuteNonQuery();
+    }
 
     private static SqlCommand CreateCommand(SqlConnection conn, string nombre)
         => new(nombre, conn) { CommandType = CommandType.StoredProcedure };
@@ -56,6 +63,7 @@ public class ClienteRepository : IClienteRepository
         using SqlCommand cmd = CreateCommand(conn, "dbo.usp_Cliente_Crear");
         AddParams(cmd,cliente);
         conn.Open();
+        EstablecerAuditoria(conn);
         cmd.ExecuteNonQuery();
     }
 
@@ -66,6 +74,7 @@ public class ClienteRepository : IClienteRepository
         cmd.Parameters.Add("@id_cliente",SqlDbType.Int).Value = cliente.IdCliente;
         AddParams(cmd,cliente);
         conn.Open();
+        EstablecerAuditoria(conn);
         cmd.ExecuteNonQuery();
     }
 
@@ -75,6 +84,7 @@ public class ClienteRepository : IClienteRepository
         using SqlCommand cmd = CreateCommand(conn, "dbo.usp_Cliente_Eliminar");
         cmd.Parameters.Add("@id_cliente",SqlDbType.Int).Value = id;
         conn.Open();
+        EstablecerAuditoria(conn);
         cmd.ExecuteNonQuery();
     }
 }
