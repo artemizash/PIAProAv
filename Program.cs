@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TemplateCSharp.Data;
 using TemplateCSharp.Data.Repositories;
@@ -42,6 +42,16 @@ internal static class Program
         services.AddTransient<IPartidoRepository, PartidoRepository>();
         services.AddTransient<IVentaRepository, VentaRepository>();
 
+        services.AddTransient<IFacturaRepository, FacturaRepository>();
+
+        services.AddTransient<ICancelacionRepository, CancelacionRepository>();
+
+        services.AddTransient<IReporteVentasRepository, ReporteVentasRepository>();
+
+        services.AddTransient<IReporteOcupacionRepository, ReporteOcupacionRepository>();
+
+        services.AddTransient<IHistorialClientesRepository, HistorialClientesRepository>();
+
         // Servicios.
         services.AddTransient<IUsuarioService, UsuarioService>();
         services.AddTransient<IClienteService, ClienteService>();
@@ -52,6 +62,16 @@ internal static class Program
         services.AddTransient<IAsientoService, AsientoService>();
         services.AddTransient<IPartidoService, PartidoService>();
         services.AddTransient<IVentaService, VentaService>();
+
+        services.AddTransient<IFacturaService, FacturaService>();
+
+        services.AddTransient<ICancelacionService, CancelacionService>();
+
+        services.AddTransient<IReporteVentasService, ReporteVentasService>();
+
+        services.AddTransient<IReporteOcupacionService, ReporteOcupacionService>();
+
+        services.AddTransient<IHistorialClientesService, HistorialClientesService>();
 
         // Formularios.
         services.AddTransient<FrmUsuarios>();
